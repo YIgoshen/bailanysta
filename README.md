@@ -1,5 +1,7 @@
 # Bailanysta
 
+Video link: https://www.loom.com/share/cb85e86471ee4b338caf8c654cbe51f1?sid=003d2955-64c6-4053-bd6a-440b5fd9472d
+
 **Bailanysta** is a social networking platform where users can create posts and explore a feed of posts from other users.  
 The application is designed with both backend and frontend components. The UI can be implemented as a web app or an iOS app.  
 
