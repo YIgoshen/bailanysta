@@ -16,20 +16,17 @@ import styles from "./Login.module.scss";
 import { fetchAuth, selectIsAuth } from "../../redux/slices/auth";
 
 export const Login = () => {
-
-
   const isAuth = useSelector(selectIsAuth)
   const dispatch = useDispatch()
 
   const { 
     register, 
     handleSubmit, 
-    setError, 
     formState: { errors, isValid } 
   } = useForm({
     defaultValues: {
-      email: 'test-2@test.com',
-      password: 'test-2'
+      email: '',
+      password: ''
     },
     mode: 'onChange'
   })
@@ -52,22 +49,9 @@ export const Login = () => {
     }
   }
 
-  useEffect(() => {
-
-  }, [])
-
-  console.log('-----errors:::', errors);
-  console.log('-----isValid:::', isValid);
-
-  console.log('-----isAuth:::', isAuth);
-
-
   if (isAuth) {
     return <Navigate to="/" />
   }
-
-  
-
 
   return (
     <Paper classes={{ root: styles.root }}>
@@ -99,7 +83,7 @@ export const Login = () => {
           fullWidth 
         />
         
-        <Button type="submit" size="large" variant="contained" fullWidth>
+        <Button disabled={!isValid} type="submit" size="large" variant="contained" fullWidth>
           Войти
         </Button>
 

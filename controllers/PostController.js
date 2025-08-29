@@ -66,28 +66,28 @@ export const getOne = async (req, res) => {
         returnDocument: 'after'
       },
       // MongooseError: Model.findByIdAndUpdate() no longer accepts a callback
-      // 4-м параметром передаем функцию, которая будет выполняться - когда произойдет изменение и обновление статьи - что делать дальше.
+      // 4-м параметром передаем функцию, которая будет выполняться - когда произойдет изменение и обновление поста - что делать дальше.
       // (err, doc) => {
       //   if (err) {
       //     console.log('Doc err:', err);
       //     return res.status(500).json({
-      //       message: 'Не удалось вернуть статью'
+      //       message: 'Не удалось вернуть пост'
       //     })
       //   }
 
       //   if (!doc) {
       //     return res.status(404).json({
-      //       message: "Статья не найдена"
+      //       message: "Пост не найден"
       //     })
       //   }
 
       //   res.json(doc)
       // }
-    )
+    ).populate('user')
 
     if (!doc) {
       return res.status(404).json({
-        message: "Статья не найдена"
+        message: "Пост не найден"
       });
     }
   
@@ -110,7 +110,7 @@ export const remove = async (req, res) => {
 
     if (!doc) {
       return res.status(404).json({
-        message: "Статья не найдена"
+        message: "Пост не найден"
       })
     }
 
@@ -144,7 +144,7 @@ export const update = async (req, res) => {
     
     if (!doc) {
       return res.status(404).json({
-        message: "Статья не найдена"
+        message: "Пост не найдена"
       })
     }
 

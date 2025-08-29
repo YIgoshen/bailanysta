@@ -8,12 +8,15 @@ import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from '../../axios';
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from '../../redux/slices/auth';
 
 export const AddPost = () => {
+  const imageUrl = '';
+  const isAuth = useSelector(selectIsAuth)
 
   const navigate = useNavigate()
 
-  const imageUrl = '';
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');
@@ -69,19 +72,16 @@ export const AddPost = () => {
   );
 
 
-  // if (window.localStorage.getItem('token') && !isAuth) {
-  //   return <Navigate to="/" />
-  // }
-
-
-  console.log({text, tags, title});
+  if (!window.localStorage.getItem('token') && !isAuth) {
+    return <Navigate to="/" />
+  }
   
 
   return (
     <Paper style={{ padding: 30 }}>
-      <Button variant="outlined" size="large">
+      {/* <Button variant="outlined" size="large">
         Загрузить превью
-      </Button>
+      </Button> */}
       <input type="file" onChange={handleChangeFile} hidden />
       {imageUrl && (
         <Button variant="contained" color="error" onClick={onClickRemoveImage}>
@@ -96,7 +96,7 @@ export const AddPost = () => {
       <TextField
         classes={{ root: styles.title }}
         variant="standard" 
-        placeholder="Заголовок статьи..."
+        placeholder="Введите заголовок поста..."
         value={title}
         onChange={e => setTitle(e.target.value)}
         fullWidth
@@ -106,7 +106,7 @@ export const AddPost = () => {
         onChange={e => setTags(e.target.value)}
         classes={{ root: styles.tags }} 
         variant="standard" 
-        placeholder="Тэги" 
+        placeholder="Введите тэги" 
         fullWidth 
       />
       <SimpleMDE className={styles.editor} value={text} onChange={onChange} options={options} />

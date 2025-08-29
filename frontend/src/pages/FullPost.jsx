@@ -21,7 +21,7 @@ export const FullPost = () => {
     })
     .catch(err => {
       console.warn(err);
-      alert("Ошибка при получении статьи")
+      alert("Ошибка при получении поста")
     })
 
 
@@ -37,9 +37,10 @@ export const FullPost = () => {
         // imageUrl="https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"
         user={data.user}
         createdAt={data.createdAt}
-        viewsCount={data.viewsCount}
+        viewsCount={5}
         commentsCount={3}
-        tags={["react", "fun", "typescript"]}
+        // tags={["react", "fun", "typescript"]}
+        tags={data.tags}
         isFullPost
       >
         <p>

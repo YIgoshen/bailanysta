@@ -46,7 +46,7 @@ app.get('/auth/me', checkAuth, UserController.getMe)
 // Post routes------------
 app.get('/posts', PostController.getAll)
 app.get('/posts/:id', PostController.getOne)
-app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create)       //обязательно должны передавать токен, потому что не можем создавать статью без авторизации
+app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create)
 app.delete('/posts/:id', checkAuth, PostController.remove)
 app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostController.update)
 
